@@ -10,7 +10,7 @@
         <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
     </head>
     <body class="bg-light">
-        <div class="d-flex align-items-center vh-100">
+        <div class="d-flex align-items-center vh-100 overflow-auto">
             <div id="app" class="container" 
             x-data="
                 { 
@@ -28,15 +28,15 @@
                 <h1 class="text-center">Switcher Studio Teleport Example</h1>
                 <p class="text-center">Select two urban areas below to compare statistics from the Teleport. </p>
                 <div class="row justify-content-center">
-                    <div class="col-3">
+                    <div class="col-6 col-sm-3">
                         <div class="form-group">
-                            <label for="ua1" class="mb-1">Select first urban area:</label>
+                            <label for="ua1" class="mb-1">Select area:</label>
                             <select id="ua1" class="form-control" x-model="ua_selected_1" x-on:change="
                                 fetch(urban_areas[ua_selected_1].href + 'details')
                                     .then((response) => response.json())   
                                     .then((data) => {console.log(data); return data;})
                                     .then((data) => ua_1 = data)">
-                                    <option>Select Urban Area</option>
+                                    <option>Select area</option>
                                 <template x-for="(urban_area, index) in urban_areas">
                                     <option 
                                         x-bind:value="index"
@@ -46,15 +46,15 @@
                             </select>        
                         </div>       
                     </div>
-                    <div class="col-3">
+                    <div class="col-6 col-sm-3">
                         <div class="form-group">
-                            <label for="ua2" class="mb-1">Select second urban area:</label>
+                            <label for="ua2" class="mb-1">Select area:</label>
                             <select id="ua2" class="form-control" x-model="ua_selected_2" x-on:change="
                                 fetch(urban_areas[ua_selected_2].href + 'details')
                                     .then((response) => response.json())   
                                     .then((data) => {console.log(data); return data;})
                                     .then((data) => ua_2 = data)">
-                                    <option>Select Urban Area</option>
+                                    <option>Select area</option>
                                 <template x-for="(urban_area, index) in urban_areas">
                                     <option 
                                         x-bind:value="index"
@@ -67,7 +67,7 @@
                 </div>
                 <template x-if="ua_1 != null && ua_2 != null">
                 <div class="row justify-content-center mt-5">
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
